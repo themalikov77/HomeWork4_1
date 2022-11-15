@@ -16,7 +16,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import com.example.taskmanager.R
 import com.example.taskmanager.databinding.FragmentProfileBinding
 
-@Suppress("DEPRECATION")
 class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
     private lateinit var selectedImg:Uri

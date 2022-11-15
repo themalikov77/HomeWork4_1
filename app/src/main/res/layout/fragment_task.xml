@@ -1,64 +1,70 @@
-<?xml version="1.0" encoding="utf-8"?><androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:paddingHorizontal="16dp"
     tools:context=".TaskFragment">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/input_tv"
-        android:layout_width="0dp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-       android:layout_margin="10dp"
-        android:background="@color/white"
-       android:hint="@string/title">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        tools:ignore="MissingConstraints">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_input"
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginTop="15dp"
+            android:background="@drawable/ic_border"
+            android:paddingStart="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="7dp"
+            android:background="@color/white"
+            android:text="Title" />
 
 
+    </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        tools:ignore="MissingConstraints">
 
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/input_tv1"
-        android:layout_width="0dp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/input_tv"
-        android:layout_margin="10dp"
-        android:background="@color/white"
-        android:hint="@string/description">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_input1"
+        <EditText
+            android:id="@+id/desc"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="60dp"
+            android:paddingStart="8dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/ic_border"
+            tools:ignore="Autofill,TextFields" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/white"
+            android:text="Description" />
+    </RelativeLayout>
 
 
     <Button
-        app:layout_constraintTop_toBottomOf="@id/input_tv1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:id="@+id/btn_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="16dp"
         android:text="@string/size" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

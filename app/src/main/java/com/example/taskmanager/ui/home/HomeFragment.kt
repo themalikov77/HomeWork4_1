@@ -14,7 +14,7 @@ import com.example.taskmanager.R
 import com.example.taskmanager.databinding.FragmentHomeBinding
 import com.example.taskmanager.databinding.ItemOnBoardingBinding
 import com.example.taskmanager.ui.adapter.TaskAdapter
-import com.example.taskmanager.ui.model.Task
+import com.example.taskmanager.data.model.Task
 
 class HomeFragment : Fragment() {
 

@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taskmanager.databinding.ItemTaskBinding
-import com.example.taskmanager.ui.model.Task
+import com.example.taskmanager.data.model.Task
 
 class TaskAdapter(private val tasks: ArrayList<Task> = arrayListOf()) :
     RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
@@ -22,7 +22,7 @@ class TaskAdapter(private val tasks: ArrayList<Task> = arrayListOf()) :
         holder.bind(tasks[position])
     }
 
-    fun addTasks(task:Task){
+    fun addTasks(task: Task){
         tasks.add(0,task)
         notifyItemChanged(0)
     }

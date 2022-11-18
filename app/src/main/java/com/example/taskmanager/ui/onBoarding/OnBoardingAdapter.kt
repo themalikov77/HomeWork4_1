@@ -8,9 +8,9 @@ import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taskmanager.R
 import com.example.taskmanager.databinding.ItemOnBoardingBinding
-import com.example.taskmanager.ui.model.OnBoard
+import com.example.taskmanager.data.model.OnBoard
 
-class OnBoardingAdapter(val onClick:(view:View)->Unit) : RecyclerView.Adapter<OnBoardingAdapter.OnBoardingViewHolder>() {
+class OnBoardingAdapter(val onClick:()->Unit) : RecyclerView.Adapter<OnBoardingAdapter.OnBoardingViewHolder>() {
     private val arrayList = arrayListOf <OnBoard> (
         OnBoard(
             "",
@@ -60,10 +60,10 @@ class OnBoardingAdapter(val onClick:(view:View)->Unit) : RecyclerView.Adapter<On
             binding.tvDESC.text = onBoard.desc
 
             binding.skip.setOnClickListener {
-                onClick(binding.skip)
+                onClick()
             }
             binding.btnStart.setOnClickListener {
-                onClick(binding.btnStart)
+                onClick()
             }
 
             if (adapterPosition == 0) {

@@ -1,4 +1,4 @@
-package com.example.taskmanager.ui.model
+package com.example.taskmanager.data.model
 
 data class OnBoard(
     var image:String?=null,

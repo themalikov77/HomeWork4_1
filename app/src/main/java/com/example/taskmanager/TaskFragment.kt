@@ -9,7 +9,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import com.example.taskmanager.databinding.FragmentTaskBinding
-import com.example.taskmanager.ui.model.Task
+import com.example.taskmanager.data.model.Task
 
 class TaskFragment : Fragment() {
     private lateinit var binding: FragmentTaskBinding

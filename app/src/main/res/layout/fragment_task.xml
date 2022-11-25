@@ -8,6 +8,7 @@
     android:paddingHorizontal="16dp"
     tools:context=".TaskFragment">
 
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/input_tv"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -54,6 +55,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/input_tv1" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

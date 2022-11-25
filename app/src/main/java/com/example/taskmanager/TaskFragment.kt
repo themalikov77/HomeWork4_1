@@ -34,10 +34,11 @@ class TaskFragment : Fragment() {
 
     private fun saveTask() {
         val data = Task(
-            binding.inputTitle.text.toString(),
-            binding.inputDesc.text.toString()
+           title= binding.inputTitle.text.toString(),
+           desc =  binding.inputDesc.text.toString()
         )
-        setFragmentResult("fr_task", bundleOf("task" to data))
+      // setFragmentResult("fr_task", bundleOf("task" to data))
+        App.db.taskDao().insert(data)
         findNavController().navigateUp()
     }
 

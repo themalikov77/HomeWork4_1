@@ -1,3 +1,4 @@
+
 package com.example.taskmanager.ui.profile
 
 
@@ -11,8 +12,10 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.example.taskmanager.R
 import com.example.taskmanager.data.local.Pref
 import com.example.taskmanager.databinding.FragmentProfileBinding
+import com.example.taskmanager.utils.loadImage
 
 
 class ProfileFragment : Fragment() {
@@ -20,10 +23,8 @@ class ProfileFragment : Fragment() {
     private lateinit var pref: Pref
     private val getContent: ActivityResultLauncher<String> =
         registerForActivityResult(ActivityResultContracts.GetContent()) { imageUri: Uri? ->
-            Glide.with(this).load(imageUri).into(binding.profileImage)
-            pref.saveImage(imageUri.toString())
+            binding.profileImage.loadImage(imageUri.toString())
         }
-
     companion object {
         val TYPE = "image/*"
 
@@ -41,7 +42,6 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.profileImage.setOnClickListener {
             getContent.launch(TYPE)
-
         }
         pref = Pref(requireContext())
         binding.outlinedEditText.setText(pref.getName())

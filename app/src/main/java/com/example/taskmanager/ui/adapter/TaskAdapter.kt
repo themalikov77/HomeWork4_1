@@ -4,15 +4,20 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taskmanager.App
+import com.example.taskmanager.R
 import com.example.taskmanager.databinding.ItemTaskBinding
 import com.example.taskmanager.data.model.Task
 
 class TaskAdapter(private val tasks: ArrayList<Task> = arrayListOf(),
+                  private var selected: Int = -1,
+                  private val onClick: (Task) -> Unit,
                   val context: Context,
                   val activity: FragmentActivity?
 ) :
@@ -31,6 +36,7 @@ class TaskAdapter(private val tasks: ArrayList<Task> = arrayListOf(),
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         holder.bind(tasks[position])
+
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -55,11 +61,19 @@ class TaskAdapter(private val tasks: ArrayList<Task> = arrayListOf(),
     inner class TaskViewHolder(private val binding: ItemTaskBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(task: Task) {
+           if (selected==adapterPosition){
+               binding.tvTitle.setBackgroundColor(ContextCompat.getColor(context, R.color.black))
+           }else{
+               binding.tvDesc.setBackgroundColor(ContextCompat.getColor(context,R.color.orange))
+           }
             binding.tvTitle.text=task.title
             binding.tvDesc.text=task.desc
             itemView.setOnLongClickListener{
                 onLong(task)
                 return@setOnLongClickListener true
+            }
+            binding.root.setOnClickListener {
+                onClick(task)
             }
 
         }
@@ -69,8 +83,6 @@ class TaskAdapter(private val tasks: ArrayList<Task> = arrayListOf(),
             alertDialog.setPositiveButton("Ok", DialogInterface.OnClickListener { _, _ ->
               App.db.taskDao().delete(task)
                 activity?.recreate()
-
-
             })
             alertDialog.setNegativeButton(
                 "Cancel",

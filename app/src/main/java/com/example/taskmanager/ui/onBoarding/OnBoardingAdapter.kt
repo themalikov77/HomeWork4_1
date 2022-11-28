@@ -1,10 +1,7 @@
 package com.example.taskmanager.ui.onBoarding
-
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
-import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taskmanager.R
 import com.example.taskmanager.databinding.ItemOnBoardingBinding
@@ -13,17 +10,17 @@ import com.example.taskmanager.data.model.OnBoard
 class OnBoardingAdapter(val onClick:()->Unit) : RecyclerView.Adapter<OnBoardingAdapter.OnBoardingViewHolder>() {
     private val arrayList = arrayListOf <OnBoard> (
         OnBoard(
-            "",
+            R.raw.manager,
             " Отечественный продукт ",
             "   Каждый этап создания проходил в Кыргызстане, от разработки и до запуска и поддержки "
         ),
         OnBoard(
-            "",
+            R.raw.laptop,
             " Самый удобный сервис ",
             "Доступная цена, круглосуточная поддержка,наличный и безналичный расчет"
         ),
         OnBoard(
-            "",
+            R.raw.taxi,
             " У нас заботятся об экологии",
             "  В автопарке абсолюнтно новые машины на газе и электричестве,работают без вреда для окружающей среды "
         )
@@ -53,6 +50,7 @@ class OnBoardingAdapter(val onClick:()->Unit) : RecyclerView.Adapter<OnBoardingA
 
     inner class OnBoardingViewHolder(private val binding: ItemOnBoardingBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
         fun bind(onBoard: OnBoard) {
             binding.btnStart.isVisible = adapterPosition == arrayList.lastIndex
             binding.skip.isVisible = adapterPosition != arrayList.lastIndex
@@ -67,7 +65,7 @@ class OnBoardingAdapter(val onClick:()->Unit) : RecyclerView.Adapter<OnBoardingA
             }
 
             if (adapterPosition == 0) {
-                binding.image.setImageResource(R.drawable.img_1)
+               binding.image.setAnimation(R.raw.taxi)
                 binding.ind1.setImageResource(R.drawable.selected)
                 binding.ind2.setImageResource(R.drawable.unselected)
                 binding.ind3.setImageResource(R.drawable.unselected)
@@ -75,7 +73,7 @@ class OnBoardingAdapter(val onClick:()->Unit) : RecyclerView.Adapter<OnBoardingA
                 binding.btnBack.isVisible = false
             }
             if (adapterPosition == 1) {
-                binding.image.setImageResource(R.drawable.img)
+                binding.image.setAnimation(R.raw.manager)
                 binding.ind1.setImageResource(R.drawable.unselected)
                 binding.ind2.setImageResource(R.drawable.selected)
                 binding.ind3.setImageResource(R.drawable.unselected)
@@ -83,7 +81,7 @@ class OnBoardingAdapter(val onClick:()->Unit) : RecyclerView.Adapter<OnBoardingA
                 binding.btnBack.isVisible = true
             }
             if (adapterPosition == 2) {
-                binding.image.setImageResource(R.drawable.img_eco)
+                binding.image.setAnimation(R.raw.laptop)
                 binding.ind1.setImageResource(R.drawable.unselected)
                 binding.ind2.setImageResource(R.drawable.unselected)
                 binding.ind3.setImageResource(R.drawable.selected)

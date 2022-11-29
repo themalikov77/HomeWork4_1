@@ -15,11 +15,12 @@ import com.example.taskmanager.R
 import com.example.taskmanager.databinding.ItemTaskBinding
 import com.example.taskmanager.data.model.Task
 
-class TaskAdapter(private val tasks: ArrayList<Task> = arrayListOf(),
-                  private var selected: Int = -1,
-                  private val onClick: (Task) -> Unit,
-                  val context: Context,
-                  val activity: FragmentActivity?
+class TaskAdapter(
+    private val tasks: ArrayList<Task> = arrayListOf(),
+    private var selected: Int = -1,
+    private val onClick: (Task) -> Unit,
+    val context: Context,
+    val activity: FragmentActivity?
 ) :
     RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
@@ -37,21 +38,21 @@ class TaskAdapter(private val tasks: ArrayList<Task> = arrayListOf(),
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         holder.bind(tasks[position])
 
+
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun addTask(newTask: List<Task>){
+    fun addTask(newTask: List<Task>) {
         this.tasks.clear()
         this.tasks.addAll(newTask)
         notifyDataSetChanged()
     }
 
 
-    fun addTasks(task: Task){
-        tasks.add(0,task)
+    fun addTasks(task: Task) {
+        tasks.add(0, task)
         notifyItemChanged(0)
     }
-
 
 
     override fun getItemCount(): Int {
@@ -61,14 +62,18 @@ class TaskAdapter(private val tasks: ArrayList<Task> = arrayListOf(),
     inner class TaskViewHolder(private val binding: ItemTaskBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(task: Task) {
-           if (selected==adapterPosition){
-               binding.tvTitle.setBackgroundColor(ContextCompat.getColor(context, R.color.black))
-           }else{
-               binding.tvDesc.setBackgroundColor(ContextCompat.getColor(context,R.color.orange))
-           }
-            binding.tvTitle.text=task.title
-            binding.tvDesc.text=task.desc
-            itemView.setOnLongClickListener{
+            if (adapterPosition % 2 == 0) {
+                itemView.setBackgroundColor(ContextCompat.getColor(context, R.color.black))
+                binding.tvDesc.setTextColor(ContextCompat.getColor(context, R.color.white))
+                binding.tvTitle.setTextColor(ContextCompat.getColor(context, R.color.white))
+            } else {
+                itemView.setBackgroundColor(ContextCompat.getColor(context, R.color.white))
+                binding.tvDesc.setTextColor(ContextCompat.getColor(context, R.color.black))
+                binding.tvTitle.setTextColor(ContextCompat.getColor(context, R.color.black))
+            }
+            binding.tvTitle.text = task.title
+            binding.tvDesc.text = task.desc
+            itemView.setOnLongClickListener {
                 onLong(task)
                 return@setOnLongClickListener true
             }
@@ -77,11 +82,12 @@ class TaskAdapter(private val tasks: ArrayList<Task> = arrayListOf(),
             }
 
         }
+
         private fun onLong(task: Task) {
             val alertDialog = AlertDialog.Builder(context)
             alertDialog.setTitle("Delete?")
             alertDialog.setPositiveButton("Ok", DialogInterface.OnClickListener { _, _ ->
-              App.db.taskDao().delete(task)
+                App.db.taskDao().delete(task)
                 activity?.recreate()
             })
             alertDialog.setNegativeButton(
@@ -93,9 +99,7 @@ class TaskAdapter(private val tasks: ArrayList<Task> = arrayListOf(),
         }
 
 
-
-
-        }
+    }
 
 
 }

@@ -14,6 +14,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.taskmanager.data.local.Pref
 import com.example.taskmanager.databinding.ActivityMainBinding
 import com.example.taskmanager.databinding.FragmentOnBoardingBinding
+import com.google.firebase.FirebaseApp
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -23,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        pref=Pref(this)
+        pref = Pref(this)
 
         val navView: BottomNavigationView = binding.navView
 
@@ -33,6 +35,7 @@ class MainActivity : AppCompatActivity() {
             navController.navigate(R.id.onBoardingFragment)
         }
 
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
@@ -41,16 +44,23 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_dashboard,
                 R.id.navigation_notifications,
                 R.id.taskFragment,
-                R.id.navigation_profile
+                R.id.navigation_profile,
+                R.id.authFragment
             )
         )
-        val bottomFragment= arrayListOf(  R.id.navigation_home,
+        val bottomFragment = arrayListOf(
+            R.id.navigation_home,
             R.id.navigation_dashboard,
             R.id.navigation_notifications,
             R.id.taskFragment,
-            R.id.navigation_profile)
+            R.id.navigation_profile
+        )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        if (FirebaseAuth.getInstance().currentUser?.uid == null) {
+            navController.navigate(R.id.authFragment)
+        }
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             navView.isVisible = bottomFragment.contains(destination.id)
             if (destination.id == R.id.onBoardingFragment) {
@@ -61,6 +71,8 @@ class MainActivity : AppCompatActivity() {
 
 
         }
+
     }
+
 
 }

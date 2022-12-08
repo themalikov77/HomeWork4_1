@@ -17,7 +17,6 @@ import com.example.taskmanager.data.model.Task
 
 class TaskAdapter(
     private val tasks: ArrayList<Task> = arrayListOf(),
-    private var selected: Int = -1,
     private val onClick: (Task) -> Unit,
     val context: Context,
     val activity: FragmentActivity?

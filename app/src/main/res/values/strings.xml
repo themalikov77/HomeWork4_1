@@ -13,4 +13,8 @@
     <string name="name">Name</string>
     <string name="label">Label</string>
     <string name="age">Age</string>
+    <string name="number">Введите номер:</string>
+    <string name="send">Отправить</string>
+    <string name="code">Введите код:</string>
+    <string name="accept">Подтвердить</string>
 </resources>

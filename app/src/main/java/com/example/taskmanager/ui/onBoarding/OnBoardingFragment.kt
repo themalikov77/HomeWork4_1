@@ -8,8 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 
 import androidx.navigation.fragment.findNavController
+import com.example.taskmanager.R
 import com.example.taskmanager.data.local.Pref
 import com.example.taskmanager.databinding.FragmentOnBoardingBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class OnBoardingFragment : Fragment() {
     private lateinit var binding: FragmentOnBoardingBinding
@@ -27,12 +29,14 @@ class OnBoardingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         pref = Pref(requireActivity())
         val adapter = OnBoardingAdapter {
-            pref.saveShowBoarding(true)
-            findNavController().navigateUp()
+            if (FirebaseAuth.getInstance().currentUser?.uid == null) {
+                findNavController().navigate(R.id.authFragment)
+            } else {
+                pref.saveShowBoarding(true)
+                findNavController().navigateUp()
+            }
         }
         binding.viewPager.adapter = adapter
-
-
     }
 
 
